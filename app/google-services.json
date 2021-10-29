@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "627554600549",
+    "project_id": "toc-toks",
+    "storage_bucket": "toc-toks.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:627554600549:android:26207d8d9c69f5af6ba88c",
+        "android_client_info": {
+          "package_name": "com.principal.geeksocial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "627554600549-jcb1ib3cv117641t8r5p15d7rtmc6upi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.principal.geeksocial",
+            "certificate_hash": "a487423d9811ecb0c848c82e9f3cc65042187470"
+          }
+        },
+        {
+          "client_id": "627554600549-90gkgsfqn618t8nm8g8r09sinjmalif4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtt0NJVpc9OoMPpPIZiavwVbH5q4CBUYA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "627554600549-90gkgsfqn618t8nm8g8r09sinjmalif4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
