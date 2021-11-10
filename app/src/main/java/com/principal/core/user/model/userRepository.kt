@@ -5,4 +5,5 @@ interface userRepository {
     fun readAll(): Array<user?>?
     fun deleteUser(user: user?):user?
     fun readUser(user: user?):user?
+
 }

@@ -16,7 +16,10 @@ class user (){
     constructor(name: String, surName: String) : this() {
         this.name = name
         this.surName = surName
+        
     }
+
+
 
 
 }
