@@ -28,7 +28,13 @@ open class UserFirebaseRepository : userRepository {
     }
 
     override fun readUser(user: user?): user? {
-        TODO("Not yet implemented")
+        var us = FirebaseAuth.getInstance().currentUser
+        if(us != null){
+            us.let {
+                user?.userName = us.email.toString()
+            }
+        }
+        return user
     }
 
 

@@ -24,6 +24,7 @@ class postFirestoreRepository : postRepository {
         .add(post)
         .addOnSuccessListener { documentReference ->
             Log.d(TAG,"DocumentSnapshot added whit ID :${documentReference.id}")
+
         }
         .addOnFailureListener{e ->
             Log.d(TAG,"Error Adding Document", e)
@@ -36,11 +37,21 @@ class postFirestoreRepository : postRepository {
     }
 
     override fun delete(Post: post) {
-        TODO("Not yet implemented")
+
     }
 
-    override fun read(User: user) {
-        TODO("Not yet implemented")
+    override fun read(User: user) :ArrayList<post> {
+        database.collection("POST")
+            .whereEqualTo("${User.userName}",true)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents ){
+                    postings.postContent = document.get("POSTCONTENT") as String
+                    postings.username = document.get("USERNAME") as String
+                    Posts.add(postings)
+                }
+            }
+        return Posts
     }
 
     override fun readAll() : ArrayList<post>{
