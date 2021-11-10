@@ -40,7 +40,7 @@ class postFirestoreRepository : postRepository {
 
     }
 
-    override fun read(User: user) :ArrayList<post> {
+    override fun read(User: user): ArrayList<post> {
         database.collection("POST")
             .whereEqualTo("${User.userName}",true)
             .get()
