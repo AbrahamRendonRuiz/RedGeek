@@ -7,11 +7,12 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.principal.core.post.model.post
 import com.principal.core.post.model.postRepository
+import com.principal.core.shared.infraesctructure.persistence.FirebaseRepository
 import com.principal.core.user.model.user
 
-class postFirestoreRepository : postRepository {
-    private val database = Firebase.firestore
-    private val Posts = arrayListOf<post>()
+class postFirestoreRepository : postRepository, FirebaseRepository() {
+
+     val Posts = arrayListOf<post>()
     private var postings = post()
 
 
@@ -20,7 +21,7 @@ class postFirestoreRepository : postRepository {
             "POSTCONTENT" to Post.postContent,
             "USERNAME" to User.userName
         )
-        database.collection("POST")
+        DATABASE.collection("POST")
         .add(post)
         .addOnSuccessListener { documentReference ->
             Log.d(TAG,"DocumentSnapshot added whit ID :${documentReference.id}")
@@ -37,12 +38,12 @@ class postFirestoreRepository : postRepository {
     }
 
     override fun delete(Post: post) {
-
+        
     }
 
     override fun read(User: user): ArrayList<post> {
-        database.collection("POST")
-            .whereEqualTo("${User.userName}",true)
+        DATABASE.collection("POST")
+            .whereEqualTo(User.userName,true)
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents ){
@@ -56,7 +57,7 @@ class postFirestoreRepository : postRepository {
 
     override fun readAll() : ArrayList<post>{
 
-        database.collection("POST").get().addOnSuccessListener { documents ->
+        DATABASE.collection("POST").get().addOnSuccessListener { documents ->
 
             for (document in documents ){
                 postings.postContent = document.get("POSTCONTENT") as String
