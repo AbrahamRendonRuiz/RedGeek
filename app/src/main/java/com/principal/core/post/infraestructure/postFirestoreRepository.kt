@@ -33,12 +33,21 @@ class postFirestoreRepository : postRepository, FirebaseRepository() {
         return Post
     }
 
-    override fun edit(User: user, Post: post): post {
-        TODO("Not yet implemented")
+    override fun edit( Post: post): post {
+        val docRef = DATABASE.collection("POST").document(Post.postId)
+        docRef.update("POSTCONTENT",Post.postContent)
+            .addOnSuccessListener{Log.d(TAG,"DocumentSnapshot actualizado correctamente")}
+            .addOnFailureListener{e -> Log.w(TAG, "Error updating document", e)}
+        return Post
     }
 
     override fun delete(Post: post) {
-        
+        val docRef = DATABASE.collection("POST").document(Post.postId)
+            docRef.delete()
+                .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
+                .addOnFailureListener{e -> Log.w(TAG, "Error deleting document", e)}
+
+
     }
 
     override fun read(User: user): ArrayList<post> {
@@ -49,6 +58,7 @@ class postFirestoreRepository : postRepository, FirebaseRepository() {
                 for (document in documents ){
                     postings.postContent = document.get("POSTCONTENT") as String
                     postings.username = document.get("USERNAME") as String
+                    postings.postId = document.id
                     Posts.add(postings)
                 }
             }
@@ -62,6 +72,7 @@ class postFirestoreRepository : postRepository, FirebaseRepository() {
             for (document in documents ){
                 postings.postContent = document.get("POSTCONTENT") as String
                 postings.username = document.get("USERNAME") as String
+                postings.postId = document.id
                 Posts.add(postings)
             }
         }

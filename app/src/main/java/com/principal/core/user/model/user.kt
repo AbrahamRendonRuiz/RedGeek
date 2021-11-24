@@ -20,6 +20,9 @@ class user (){
     }
 
 
+    constructor(userName:String) : this() {
+        this.userName = userName
+    }
 
 
 }
